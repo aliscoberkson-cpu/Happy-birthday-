@@ -90,7 +90,7 @@ button:focus-visible{outline:2px solid var(--gold); outline-offset:3px}
   <h1>Amina</h1>
   <div class="rule"></div>
   <p id="msg" aria-live="polite"></p>
-  <p class="sign" id="sign">Your proudest cousin</p>
+  <p class="sign" id="sign">Your proudest cousin, Ali Mohammed</p>
   <button id="again" type="button">Read it again</button>
 </main>
 <script>
@@ -99,36 +99,4 @@ button:focus-visible{outline:2px solid var(--gold); outline-offset:3px}
   var msg = document.getElementById("msg");
   var sign = document.getElementById("sign");
   var again = document.getElementById("again");
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var timer = null;
-
-  function finish(){
-    sign.classList.add("on"); again.classList.add("on");
-  }
-  function run(){
-    clearTimeout(timer);
-    sign.classList.remove("on"); again.classList.remove("on");
-    msg.textContent = "";
-    if(reduce){ msg.textContent = text; finish(); return; }
-    var caret = document.createElement("span"); caret.className = "caret";
-    var node = document.createTextNode("");
-    msg.appendChild(node); msg.appendChild(caret);
-    var i = 0;
-    function tick(){
-      if(i >= text.length){ finish(); return; }
-      var ch = text.charAt(i++);
-      node.nodeValue += ch;
-      var d = 42 + Math.random()*38;
-      if(ch === "." ) d = 650;
-      else if(ch === ",") d = 320;
-      else if(ch === "–") d = 380;
-      timer = setTimeout(tick, d);
-    }
-    timer = setTimeout(tick, 3200);
-  }
-  again.addEventListener("click", run);
-  run();
-})();
-</script>
-</body>
-</html>
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced
