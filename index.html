@@ -2,74 +2,38 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Congratulations, Amina</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,500&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Jost:wght@300&display=swap" rel="stylesheet">
 <style>
-:root{
-  color-scheme: dark;
-  --bg:#0d2a2b; --bg2:#143c3b; --ink:#f6e9e4; --soft:#cfe0da;
-  --gold:#e9c27a; --rose:#f2a7b4; --glow1:rgba(242,167,180,.22); --glow2:rgba(233,194,122,.18);
-}
-@media (prefers-color-scheme: light){
-  :root{
-    color-scheme: light;
-    --bg:#fbeee9; --bg2:#f6dcd8; --ink:#3a1f2b; --soft:#5d3a47;
-    --gold:#a9731f; --rose:#c4546b; --glow1:rgba(196,84,107,.18); --glow2:rgba(169,115,31,.15);
-  }
-}
 *,*::before,*::after{box-sizing:border-box}
-html{min-height:100%; background:var(--bg)}
+html{background:#0d2a2b}
 body{
-  margin:0; min-height:100vh; color:var(--ink);
+  margin:0; min-height:100vh; color:#f6e9e4;
   font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;
-  background-image:
-    radial-gradient(60% 50% at 15% 10%, var(--glow1), transparent 70%),
-    radial-gradient(55% 45% at 90% 90%, var(--glow2), transparent 70%),
-    linear-gradient(180deg, var(--bg), var(--bg2));
-  background-attachment:fixed;
+  background:linear-gradient(180deg,#0d2a2b,#143c3b);
   display:flex; justify-content:center;
 }
 main{width:100%; max-width:40rem; padding:12vh 1.6rem 10vh; text-align:center}
 .small{
   font-family:"Jost",system-ui,sans-serif; font-weight:300; letter-spacing:.04em;
-  color:var(--soft); font-size:1.05rem; margin:0 0 1rem;
-  animation:in 1.4s .3s backwards;
+  color:#cfe0da; font-size:1.05rem; margin:0 0 1rem;
 }
 h1{
   margin:0; font-weight:400; font-style:italic;
   font-size:clamp(3.6rem,17vw,7.5rem); line-height:1;
-  color:var(--gold);
-  animation:in 2s .9s backwards;
+  color:#e9c27a;
 }
-.rule{width:3.5rem; height:1px; background:var(--rose); margin:2rem auto; animation:in 1.2s 2.2s backwards}
-#msg{
-  font-size:clamp(1.3rem,4.6vw,1.75rem); line-height:1.65; font-weight:400;
+.rule{width:3.5rem; height:1px; background:#f2a7b4; margin:2rem auto}
+p.msg{
+  font-size:clamp(1.3rem,4.6vw,1.75rem); line-height:1.65;
   margin:0 auto; text-align:left;
 }
-#msg .caret{
-  display:inline-block; width:.07em; height:1.05em; margin-left:.08em;
-  background:var(--rose); vertical-align:-.15em; animation:blink 1s steps(1) infinite;
-}
-.sign{
-  margin:1.5rem 0 0; font-style:italic; color:var(--rose); font-size:1.5rem;
-  text-align:right; transition:opacity 1.6s;
-}
-button{
-  margin-top:2.5rem; font-family:"Jost",system-ui,sans-serif; font-size:1rem; font-weight:300;
-  color:var(--soft); background:transparent; border:1px solid var(--soft);
-  border-radius:999px; padding:.7rem 1.6rem; cursor:pointer; transition:opacity 1s;
-}
-.js .sign, .js button{opacity:0}
-.js .sign.on{opacity:1}
-.js button.on{opacity:.85}
-@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-@keyframes blink{50%{opacity:0}}
-@media (prefers-reduced-motion: reduce){
-  .small,h1,.rule{animation:none}
-  #msg .caret{animation:none}
+p.sign{
+  margin:1.5rem 0 0; font-style:italic; color:#f2a7b4;
+  font-size:1.5rem; text-align:right;
 }
 </style>
 </head>
@@ -78,52 +42,8 @@ button{
   <p class="small">With all my love, for you</p>
   <h1>Amina</h1>
   <div class="rule"></div>
-  <p id="msg">Congratulations, Amina. I’m so proud of you. Every late night, every doubt you pushed through, every time you kept going when it felt too heavy to carry – it all led to this moment, and you earned every bit of it. You have a heart as big as your dreams, and today the world gets to see what our family has always known: you are extraordinary. Whatever comes next, I’ll be right there, cheering the loudest.</p>
-  <p class="sign" id="sign">Your proudest cousin, Ali Mohammed</p>
-  <button id="again" type="button">Read it again</button>
+  <p class="msg">Congratulations, Amina. I’m so proud of you. Every late night, every doubt you pushed through, every time you kept going when it felt too heavy to carry – it all led to this moment, and you earned every bit of it. You have a heart as big as your dreams, and today the world gets to see what our family has always known: you are extraordinary. Whatever comes next, I’ll be right there, cheering the loudest.</p>
+  <p class="sign">Your proudest cousin, Ali Mohammed</p>
 </main>
-<script>
-(function(){
-  var msg = document.getElementById("msg");
-  var sign = document.getElementById("sign");
-  var again = document.getElementById("again");
-  var text = msg.textContent.trim();
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var timer = null;
-  msg.style.minHeight = msg.offsetHeight + "px";
-  document.documentElement.classList.add("js");
-
-  function finish(){
-    sign.classList.add("on");
-    again.classList.add("on");
-  }
-  function run(){
-    clearTimeout(timer);
-    sign.classList.remove("on");
-    again.classList.remove("on");
-    if(reduce){ msg.textContent = text; finish(); return; }
-    msg.textContent = "";
-    var node = document.createTextNode("");
-    var caret = document.createElement("span");
-    caret.className = "caret";
-    msg.appendChild(node);
-    msg.appendChild(caret);
-    var i = 0;
-    function tick(){
-      if(i >= text.length){ finish(); return; }
-      var ch = text.charAt(i++);
-      node.nodeValue += ch;
-      var d = 42 + Math.random() * 38;
-      if(ch === ".") d = 650;
-      else if(ch === ",") d = 320;
-      else if(ch === "–") d = 380;
-      timer = setTimeout(tick, d);
-    }
-    timer = setTimeout(tick, 3200);
-  }
-  again.addEventListener("click", run);
-  run();
-})();
-</script>
 </body>
 </html>
